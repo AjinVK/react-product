@@ -1,0 +1,32 @@
+.logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 800 !important;
+    letter-spacing: 0.2rem !important;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    display: flex;
+}
+
+.logoMobile {
+    font-family: monospace !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.3rem !important;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    flex-grow: 1;
+}
+
+.logoPart {
+    color: rgb(255, 255, 255);
+    margin-top: 10px;
+}
+
+.avatarButton {
+    padding: 0 !important;
+}
+
+.appBar {
+    background-color: #1c252eee !important;
+    height: 78px;
+}
