@@ -11,11 +11,11 @@
 .card {
   width: 100% !important;
   max-width: 600px !important;
-  margin: 2rem auto;
-  padding: 1rem;
+  margin: 1rem auto;  
+  padding: 0 1rem;
   border-radius: 16px !important;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15) !important;
-  background-color: #fffffff8 !important;
+  background-color: #fffffff2 !important;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -42,7 +42,6 @@
 .forgotPassword:hover {
   color: #054c3f !important;
 }
-
 
 .loginBtn {
   background-color: #076653 !important;
@@ -89,4 +88,19 @@
 
 .image:hover {
   transform: scale(1.03);
+}
+
+.login-field .MuiInput-underline:hover:before {
+  border-bottom-color: rgb(4, 94, 76) !important;
+}
+
+.login-icon-button {
+    color: rgb(4, 94, 76) !important;
+}
+
+.forgotPassword-text {
+  font-family: Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }

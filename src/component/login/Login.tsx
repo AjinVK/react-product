@@ -1,7 +1,7 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Grid, TextField, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import './style.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { VisibilityOutlined, VisibilityOffOutlined } from '@mui/icons-material';
 import { IconButton, InputAdornment } from '@mui/material';
@@ -56,6 +56,9 @@ const Login = () => {
     setFormData((prev) => ({ ...prev, [name]: value, [name + "Error"]: "" }));
   };
   const [showPassword, setShowPassword] = useState(false);
+   useEffect(() => {
+    document.title = "Huewine - Login";
+  }, []);
 
   return (
     <Box className="rootBox">
@@ -73,6 +76,7 @@ const Login = () => {
                   type='email'
                   variant='standard'
                   margin='normal'
+                  className='login-field'
                   onChange={handleChange}
                   value={formData.email}
                   error={!!formData.emailError}
@@ -85,6 +89,7 @@ const Login = () => {
                   type={showPassword ? 'text' : 'password'}
                   variant="standard"
                   margin="normal"
+                  className='login-field'
                   onChange={handleChange}
                   value={formData.password}
                   error={!!formData.passwordError}
@@ -94,7 +99,8 @@ const Login = () => {
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
-                        <IconButton onClick={() => setShowPassword((prev) => !prev)} edge="end">
+                        <IconButton onClick={() => setShowPassword((prev) => !prev)}
+                          edge="end" className="login-icon-button">
                           {showPassword ? <VisibilityOutlined /> : <VisibilityOffOutlined />}
                         </IconButton>
                       </InputAdornment>

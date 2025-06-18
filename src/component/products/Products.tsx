@@ -7,6 +7,7 @@ import '../utils/imageStyle.css';
 import ResponsiveAppBar from "../responsiveappbar/ResponsiveAppBar";
 import CommonImageCard from '../utils/CommonCard';
 import { motion } from 'framer-motion';
+import { useEffect } from "react";
 
 const cardData = [
   { title: "Sales & Marketing", image: images.salesAndMarketing, onClick: handleNavigation.sales },
@@ -20,8 +21,12 @@ const cardData = [
   { title: "Accounting", image: images.accounting, onClick: handleNavigation.accounting },
   { title: "Stock Win", image: images.stockWin, onClick: handleNavigation.stockWin },
 ];
+  
+  const Products = () => {
+   useEffect(() => {
+    document.title = "Huewine - Product";
+  }, []);
 
-const Products = () => {
   return (
     <>
       <ResponsiveAppBar />

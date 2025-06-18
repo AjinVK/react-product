@@ -8,6 +8,7 @@ import {
     Typography,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import './style.css';
 
 const ForgotPassword: React.FC = () => {
     const [email, setEmail] = useState('');
@@ -41,22 +42,24 @@ const ForgotPassword: React.FC = () => {
         <Box className="rootBox" display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
             <Card className="card" sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <CardContent>
-                    <Typography variant="h5" className="title">
+                    <Typography variant="h5" className="title" m={1}>
                         Forgot Password
                     </Typography>
-                    <Typography variant="body2" mb={2} textAlign='center'>
-                        Enter your email address and we'll send you a link to reset your password.
+                    <Typography textAlign='center' className='forgotPassword-text' mb={2}>
+                        Enter your email to receive a password reset link.
                     </Typography>
                     <form onSubmit={handleSubmit} noValidate>
                         <TextField
                             fullWidth
                             label="Email"
                             variant='standard'
+                            className='login-field'
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             error={!!emailError}
                             helperText={emailError}
                             margin="normal"
+                            required
                         />
                         <Button
                             type="submit"

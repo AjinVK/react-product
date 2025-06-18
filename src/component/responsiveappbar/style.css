@@ -27,6 +27,6 @@
 }
 
 .appBar {
-    background-color: #1c252eee !important;
+    background: linear-gradient(to right, #0f2027, #203a43, #2c5364) !important;
     height: 78px;
 }
