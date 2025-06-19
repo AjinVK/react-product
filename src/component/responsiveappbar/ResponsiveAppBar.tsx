@@ -12,6 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import './style.css';
+import img from '../../assets/images/logo.png';
 
 const settings = ['Logout'];
 
@@ -83,7 +84,7 @@ const ResponsiveAppBar: React.FC = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} className="avatarButton">
-                <Avatar src="/static/images/avatar/2.jpg" />
+                <Avatar src={img} />
               </IconButton>
             </Tooltip>
             <Menu

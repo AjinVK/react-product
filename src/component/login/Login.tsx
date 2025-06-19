@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { VisibilityOutlined, VisibilityOffOutlined } from '@mui/icons-material';
 import { IconButton, InputAdornment } from '@mui/material';
-
+import img from '../../assets/vite.svg';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -139,7 +139,7 @@ const Login = () => {
             p={2} >
             <CardMedia
               component='img'
-              image='/vite.svg'
+              image={img}
               alt='Illustration'
               className="image" />
           </Grid>
