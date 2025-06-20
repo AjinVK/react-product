@@ -3,9 +3,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #F8F9FA, #a7c0a5);
   padding: 1rem;
   box-sizing: border-box;
+  background: linear-gradient(135deg, #F8F9FA, #a7c0a5);
 }
 
 .card {

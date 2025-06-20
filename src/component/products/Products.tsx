@@ -1,9 +1,7 @@
 import { Box, Grid, useMediaQuery, useTheme } from "@mui/material";
-import { handleNavigation } from '../utils/navigationHandlers';
+import { handleNavigation } from '../routes/navLinks';
 import { images } from "../../assets/images";
 import './style.css';
-import '../utils/cardStyle.css';
-import '../utils/imageStyle.css';
 import ResponsiveAppBar from "../responsiveappbar/ResponsiveAppBar";
 import CommonImageCard from '../utils/CommonCard';
 import { motion } from 'framer-motion';
@@ -23,11 +21,11 @@ const cardData = [
 ];
 
 const Products = () => {
-  const theme = useTheme();
-  const isXs = useMediaQuery(theme.breakpoints.down('sm'));
-  const isSm = useMediaQuery(theme.breakpoints.between('sm', 'md'));
-  const isMd = useMediaQuery(theme.breakpoints.between('md', 'lg'));
-  const isLg = useMediaQuery(theme.breakpoints.up('lg'));
+  const muiTheme = useTheme();
+  const isXs = useMediaQuery(muiTheme.breakpoints.down('sm'));
+  const isSm = useMediaQuery(muiTheme.breakpoints.between('sm', 'md'));
+  const isMd = useMediaQuery(muiTheme.breakpoints.between('md', 'lg'));
+  const isLg = useMediaQuery(muiTheme.breakpoints.up('lg'));
 
   useEffect(() => {
     document.title = "Huewine - Product";
@@ -44,18 +42,18 @@ const Products = () => {
   return (
     <>
       <ResponsiveAppBar />
-      <Box className="root-box" sx={{ overflow: 'hidden', }}>
-        <Grid container spacing={1} justifyContent="center"
-          maxWidth="lg"
-          margin="auto" >
+      <Box className="root-box" sx={{ overflow: 'hidden' }}>
+        <Grid container spacing={1} justifyContent="center" maxWidth="lg" margin="auto">
           {cardData.map((card, index) => (
             <Grid key={index} size={{ xs: 8, sm: 5, md: 2.8 }}>
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0, x: xOffset }}
                 transition={{
-                  delay: index * 0.1, duration: 0.5,
-                  type: 'spring', stiffness: 100,
+                  delay: index * 0.1,
+                  duration: 0.5,
+                  type: 'spring',
+                  stiffness: 100,
                 }}
               >
                 <Box sx={{
@@ -64,7 +62,7 @@ const Products = () => {
                     sm: 'none',
                     md: 'none',
                     lg: 'translateX(-70px)',
-                  }
+                  },
                 }}>
                   <CommonImageCard
                     title={card.title}
@@ -76,9 +74,9 @@ const Products = () => {
             </Grid>
           ))}
         </Grid>
-      </Box >
+      </Box>
     </>
   );
 };
 
-export default Products;
+export { Products };

@@ -1,6 +1,7 @@
 .logo {
     font-family: 'Bebas Neue', sans-serif;
-    font-weight: 800 !important;
+    font-weight: bold !important;
+    font-size: 2.5rem !important;
     letter-spacing: 0.2rem !important;
     color: rgb(255, 255, 255);
     text-decoration: none;
@@ -20,10 +21,6 @@
 .logoPart {
     color: rgb(255, 255, 255);
     margin-top: 10px;
-}
-
-.avatarButton {
-    padding: 0 !important;
 }
 
 .appBar {

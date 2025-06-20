@@ -1,9 +1,0 @@
-.media-image {
-    height: 90px;
-    width: 50% !important;
-    margin: 0 auto;
-    display: block;
-    border-radius: 16px;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-    object-fit: cover;
-}

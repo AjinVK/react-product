@@ -11,8 +11,8 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
-import './style.css';
 import img from '../../assets/images/logo.png';
+import '../responsiveappbar/style.css'
 
 const settings = ['Logout'];
 
@@ -47,10 +47,10 @@ const ResponsiveAppBar: React.FC = () => {
             noWrap
             component="a"
             href="#huewine"
-            className="logo"
+            className='logo'
             sx={{ display: { xs: 'none', md: 'flex' }, mr: 2 }}
           >
-            <Box component="span" className="logoPart">HUEWINE</Box>
+            <Box component="span" className='logoPart'>HUEWINE</Box>
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -64,8 +64,7 @@ const ResponsiveAppBar: React.FC = () => {
               anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
               transformOrigin={{ vertical: 'top', horizontal: 'left' }}
               sx={{ display: { xs: 'block', md: 'none' } }}
-            >
-            </Menu>
+            />
           </Box>
 
           <Typography
@@ -73,7 +72,7 @@ const ResponsiveAppBar: React.FC = () => {
             noWrap
             component="a"
             href="#"
-            className="logoMobile"
+            className='logoMobile'
             sx={{ display: { xs: 'flex', md: 'none' }, mr: 2 }}
           >
             HUEWINE
@@ -83,10 +82,11 @@ const ResponsiveAppBar: React.FC = () => {
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} className="avatarButton">
+              <IconButton onClick={handleOpenUserMenu}>
                 <Avatar src={img} />
               </IconButton>
             </Tooltip>
+
             <Menu
               sx={{ mt: '45px' }}
               anchorEl={anchorElUser}
