@@ -1,6 +1,5 @@
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
-import { ForgotPassword, Login } from "./component/login";
-import { Products } from "./component/products";
+import { ForgotPassword, Login, Products } from "./component";
 
 const App = () => {
   return (
