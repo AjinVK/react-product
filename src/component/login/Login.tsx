@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import img from '../../assets/vite.svg';
 import CommonTextField from '../utils/CommonTextField';
 import CommonButton from '../utils/CommonButton';
+import { validateEmail, validatePassword } from '../utils/validation';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -14,28 +15,28 @@ const Login = () => {
     emailError: "",
     passwordError: "",
   });
+
   const validateForm = () => {
     let isValid = true;
     const newErrors: { emailError?: string; passwordError?: string } = {};
 
-    if (!formData.email.trim()) {
-      newErrors.emailError = "Email is required";
-      isValid = false;
-    } else if (
-      !/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(formData.email)
-    ) {
-      newErrors.emailError = "Enter a valid email";
+    const emailError = validateEmail(formData.email);
+    const passwordError = validatePassword(formData.password);
+
+    if (emailError) {
+      newErrors.emailError = emailError;
       isValid = false;
     }
 
-    if (!formData.password.trim()) {
-      newErrors.passwordError = "Password is required";
+    if (passwordError) {
+      newErrors.passwordError = passwordError;
       isValid = false;
     }
 
     setFormData((prev) => ({ ...prev, ...newErrors }));
     return isValid;
   };
+
   const navigate = useNavigate();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

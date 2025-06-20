@@ -9,33 +9,25 @@ import { useNavigate } from 'react-router-dom';
 import CommonTextField from '../utils/CommonTextField';
 import CommonButton from '../utils/CommonButton';
 import './style.css';
+import { validateEmail } from '../utils/validation';
 
 const ForgotPassword: React.FC = () => {
     const [email, setEmail] = useState('');
     const [emailError, setEmailError] = useState('');
     const navigate = useNavigate();
 
-    const validateEmail = () => {
-        if (!email.trim()) {
-            setEmailError('Email is required');
-            return false;
-        }
-        const emailRegex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
-        if (!emailRegex.test(email)) {
-            setEmailError('Enter a valid email');
-            return false;
-        }
-        setEmailError('');
-        return true;
-    };
-
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (validateEmail()) {
-            alert('Reset link sent to your email');
-            navigate('/login');
-            setEmail('');
+        const error = validateEmail(email);
+        if (error) {
+            setEmailError(error);
+            return;
         }
+
+        setEmailError('');
+        alert('Reset link sent to your email');
+        navigate('/login');
+        setEmail('');
     };
 
     return (
