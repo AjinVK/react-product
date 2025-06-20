@@ -58,6 +58,7 @@
   font-weight: bold !important;
   border-radius: 50px !important;
   padding: 0.8rem 1.5rem !important;
+  margin-top: 16px !important;
 }
 
 .loginBtn:hover,

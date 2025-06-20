@@ -1,11 +1,11 @@
-import { Button, Card, CardActions, CardContent, CardMedia, Grid, TextField, Typography } from '@mui/material';
+import { Card, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import './style.css';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { VisibilityOutlined, VisibilityOffOutlined } from '@mui/icons-material';
-import { IconButton, InputAdornment } from '@mui/material';
 import img from '../../assets/vite.svg';
+import CommonTextField from '../utils/CommonTextField';
+import CommonButton from '../utils/CommonButton';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -56,7 +56,7 @@ const Login = () => {
     setFormData((prev) => ({ ...prev, [name]: value, [name + "Error"]: "" }));
   };
   const [showPassword, setShowPassword] = useState(false);
-   useEffect(() => {
+  useEffect(() => {
     document.title = "Huewine - Login";
   }, []);
 
@@ -69,67 +69,58 @@ const Login = () => {
               <Typography variant='h5' className="title" >
                 Login Page
               </Typography>
-              <form onSubmit={handleSubmit} noValidate >
-                <TextField
-                  label='Email'
-                  name='email'
-                  type='email'
-                  variant='standard'
-                  margin='normal'
-                  className='login-field'
-                  onChange={handleChange}
+              <form onSubmit={handleSubmit} noValidate>
+                <CommonTextField
+                  label="Email"
+                  name="email"
                   value={formData.email}
+                  onChange={handleChange}
                   error={!!formData.emailError}
                   helperText={formData.emailError}
                   required
-                  fullWidth />
-                <TextField
+                  className="login-field"
+                />
+
+                <CommonTextField
                   label="Password"
                   name="password"
-                  type={showPassword ? 'text' : 'password'}
-                  variant="standard"
-                  margin="normal"
-                  className='login-field'
-                  onChange={handleChange}
                   value={formData.password}
+                  onChange={handleChange}
                   error={!!formData.passwordError}
                   helperText={formData.passwordError}
                   required
-                  fullWidth
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton onClick={() => setShowPassword((prev) => !prev)}
-                          edge="end" className="login-icon-button">
-                          {showPassword ? <VisibilityOutlined /> : <VisibilityOffOutlined />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
+                  className="login-field"
+                  showPasswordToggle
+                  showPassword={showPassword}
+                  setShowPassword={setShowPassword}
                 />
 
                 <Typography
-                  variant='body2'
+                  variant="body2"
                   className="forgotPassword"
                   onClick={() => navigate("/forgot-password")}
                 >
                   Forgot Password?
                 </Typography>
-                <CardActions sx={{ flexDirection: 'column', gap: 2 }} >
-                  <Button
-                    type='submit'
-                    variant='contained'
-                    className='loginBtn'
-                    fullWidth>
+
+                <CardActions sx={{ flexDirection: 'column', gap: 2 }}>
+                  <CommonButton
+                    type="submit"
+                    variant="contained"
+                    className="loginBtn"
+                    fullWidth
+                  >
                     Login
-                  </Button>
-                  <Button
-                    type='button'
-                    variant='outlined'
+                  </CommonButton>
+
+                  <CommonButton
+                    type="button"
+                    variant="outlined"
                     className="signupBtn"
-                    fullWidth>
+                    fullWidth
+                  >
                     SignUp
-                  </Button>
+                  </CommonButton>
                 </CardActions>
               </form>
             </CardContent>

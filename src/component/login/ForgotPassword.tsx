@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import {
     Box,
-    Button,
     Card,
     CardContent,
-    TextField,
     Typography,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import CommonTextField from '../utils/CommonTextField';
+import CommonButton from '../utils/CommonButton';
 import './style.css';
 
 const ForgotPassword: React.FC = () => {
@@ -33,7 +33,7 @@ const ForgotPassword: React.FC = () => {
         e.preventDefault();
         if (validateEmail()) {
             alert('Reset link sent to your email');
-            navigate("/login");
+            navigate('/login');
             setEmail('');
         }
     };
@@ -45,30 +45,27 @@ const ForgotPassword: React.FC = () => {
                     <Typography variant="h5" className="title" m={1}>
                         Forgot Password
                     </Typography>
-                    <Typography textAlign='center' className='forgotPassword-text' mb={2}>
+                    <Typography textAlign="center" className="forgotPassword-text" mb={2}>
                         Enter your email to receive a password reset link.
                     </Typography>
                     <form onSubmit={handleSubmit} noValidate>
-                        <TextField
-                            fullWidth
+                        <CommonTextField
                             label="Email"
-                            variant='standard'
-                            className='login-field'
+                            name="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             error={!!emailError}
                             helperText={emailError}
-                            margin="normal"
+                            className="login-field"
                             required
                         />
-                        <Button
+                        <CommonButton
                             type="submit"
                             variant="contained"
-                            className='resetBtn'
-                            sx={{ mt: 2 }}
+                            className="resetBtn"
                         >
                             Send Reset Link
-                        </Button>
+                        </CommonButton>
                     </form>
                 </CardContent>
             </Card>
