@@ -1,4 +1,4 @@
-import { Box, Grid, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Container, Grid, useMediaQuery, useTheme } from "@mui/material";
 import { handleNavigation } from '../routes/navLinks';
 import { images } from "../../assets/images";
 import './style.css';
@@ -32,48 +32,41 @@ const Products = () => {
   }, []);
 
   const xOffset = useMemo(() => {
-    if (isXs) return 0;
+    if (isXs) return 10;
     if (isSm) return 20;
-    if (isMd) return 40;
-    if (isLg) return 80;
+    if (isMd) return 20;
+    if (isLg) return 15;
     return 0;
   }, [isXs, isSm, isMd, isLg]);
 
   return (
     <>
       <ResponsiveAppBar />
-      <Box className="root-box" sx={{ overflow: 'hidden' }}>
-        <Grid container spacing={1} justifyContent="center" maxWidth="lg" margin="auto">
-          {cardData.map((card, index) => (
-            <Grid key={index} size={{ xs: 8, sm: 5, md: 2.8 }}>
-              <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0, x: xOffset }}
-                transition={{
-                  delay: index * 0.1,
-                  duration: 0.5,
-                  type: 'spring',
-                  stiffness: 100,
-                }}
-              >
-                <Box sx={{
-                  transform: {
-                    xs:  'translateX(20px)',
-                    sm: 'none',
-                    md: 'none',
-                    lg: 'translateX(-70px)',
-                  },
-                }}>
+      <Box className="root-box" sx={{ py: 4, overflow: 'hidden' }}>
+        <Container maxWidth="lg">
+          <Grid container spacing={{ xs: 2, sm: 3, md: 4 }} justifyContent="center" margin="auto">
+            {cardData.map((card, index) => (
+              <Grid key={index} size={{ xs: 9.5, sm: 6, md: 4, lg: 3 }}>
+                <motion.div
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0, x: xOffset }}
+                  transition={{
+                    delay: index * 0.1,
+                    duration: 0.5,
+                    type: 'spring',
+                    stiffness: 120,
+                  }}
+                >
                   <CommonImageCard
                     title={card.title}
                     image={card.image}
                     onClick={card.onClick}
                   />
-                </Box>
-              </motion.div>
-            </Grid>
-          ))}
-        </Grid>
+                </motion.div>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
       </Box>
     </>
   );

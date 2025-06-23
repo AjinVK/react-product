@@ -11,7 +11,6 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
-// import img from '../../assets/images/logo.png';
 import logo from '../../assets/images/Huewine_LOGO.svg';
 import '../responsiveappbar/style.css'
 
@@ -41,31 +40,22 @@ const ResponsiveAppBar: React.FC = () => {
   return (
     <AppBar position="static" className="appBar">
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
+        <Toolbar sx={{ minHeight: 80, px: 2, justifyContent: 'space-between' }}>
 
-          <Typography
-            variant="h3"
-            noWrap
+          <Box
             component="a"
             href="#huewine"
-            className='logo'
             sx={{ display: { xs: 'none', md: 'flex' }, mr: 2 }}
           >
             <Box
               component="img"
               src={logo}
               alt="Huewine Logo"
-              sx={{
-                height: { xs: 40, sm: 48, md: 150 },
-                mt: -4,
-                width: 'auto',
-                objectFit: 'contain',
-                display: 'block',
-              }}
+              sx={{ height: 150, width: 'auto' }}
             />
-          </Typography>
+          </Box>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, mb: { xs: 3, sm: 5 } }}>
+          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton size="large" color="inherit" onClick={handleOpenNavMenu}>
               <MenuIcon />
             </IconButton>
@@ -84,40 +74,28 @@ const ResponsiveAppBar: React.FC = () => {
             noWrap
             component="a"
             href="#"
-            className='logoMobile'
-            sx={{ display: { xs: 'flex', md: 'none' }, mr: 2 }}
+            sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, mr: 2 }}
           >
             <Box
               component="img"
               src={logo}
               alt="Huewine Logo"
-              sx={{
-                height: { xs: 130, sm: 150, md: 150 },
-                mt: -4,
-                mb: { xs: -1 },
-                objectFit: 'contain',
-                display: 'block',
-              }}
-
+              sx={{ height: 120 }}
             />
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} />
-
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu}>
+              <IconButton size='large' onClick={handleOpenUserMenu}>
                 <Avatar
-                  sx={{
-                    mt: { xs: 1, md: -1 },
-                    mb: { xs: 4, sm: 5 }
-                  }}
+                  src='/default-avatar.png'
+                  sx={{ width: 40, height: 40 }}
                 />
               </IconButton>
             </Tooltip>
 
             <Menu
-              sx={{ mt: '45px' }}
+              sx={{ mt: '48px' }}
               anchorEl={anchorElUser}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
@@ -125,14 +103,12 @@ const ResponsiveAppBar: React.FC = () => {
               transformOrigin={{ vertical: 'top', horizontal: 'right' }}
             >
               {settings.map((setting) => (
-                <MenuItem
-                  key={setting}
-                  onClick={() => {
-                    handleCloseUserMenu();
-                    if (setting === 'Logout') {
-                      navigate('/login');
-                    }
-                  }}
+                <MenuItem key={setting} onClick={() => {
+                  handleCloseUserMenu();
+                  if (setting === 'Logout') {
+                    navigate('/login');
+                  }
+                }}
                 >
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
