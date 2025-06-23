@@ -11,7 +11,8 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
-import img from '../../assets/images/logo.png';
+// import img from '../../assets/images/logo.png';
+import logo from '../../assets/images/Huewine_LOGO.svg';
 import '../responsiveappbar/style.css'
 
 const settings = ['Logout'];
@@ -50,10 +51,21 @@ const ResponsiveAppBar: React.FC = () => {
             className='logo'
             sx={{ display: { xs: 'none', md: 'flex' }, mr: 2 }}
           >
-            <Box component="span" className='logoPart'>HUEWINE</Box>
+            <Box
+              component="img"
+              src={logo}
+              alt="Huewine Logo"
+              sx={{
+                height: { xs: 40, sm: 48, md: 150 },
+                mt: -4,
+                width: 'auto',
+                objectFit: 'contain',
+                display: 'block',
+              }}
+            />
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, mb: { xs: 3, sm: 5 } }}>
             <IconButton size="large" color="inherit" onClick={handleOpenNavMenu}>
               <MenuIcon />
             </IconButton>
@@ -75,7 +87,19 @@ const ResponsiveAppBar: React.FC = () => {
             className='logoMobile'
             sx={{ display: { xs: 'flex', md: 'none' }, mr: 2 }}
           >
-            HUEWINE
+            <Box
+              component="img"
+              src={logo}
+              alt="Huewine Logo"
+              sx={{
+                height: { xs: 130, sm: 150, md: 150 },
+                mt: -4,
+                mb: { xs: -1 },
+                objectFit: 'contain',
+                display: 'block',
+              }}
+
+            />
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} />
@@ -83,7 +107,12 @@ const ResponsiveAppBar: React.FC = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu}>
-                <Avatar src={img} />
+                <Avatar
+                  sx={{
+                    mt: { xs: 1, md: -1 },
+                    mb: { xs: 4, sm: 5 }
+                  }}
+                />
               </IconButton>
             </Tooltip>
 

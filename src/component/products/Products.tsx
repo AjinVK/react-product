@@ -58,7 +58,7 @@ const Products = () => {
               >
                 <Box sx={{
                   transform: {
-                    xs: 'none',
+                    xs:  'translateX(20px)',
                     sm: 'none',
                     md: 'none',
                     lg: 'translateX(-70px)',
