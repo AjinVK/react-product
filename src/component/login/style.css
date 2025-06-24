@@ -5,24 +5,42 @@
   align-items: center;
   padding: 1rem;
   box-sizing: border-box;
-  background: linear-gradient(135deg, #F8F9FA, #a7c0a5);
+  background: linear-gradient(135deg, #f2f0f600, #e7dcf6c1);
 }
 
 .card {
   width: 100% !important;
   max-width: 600px !important;
-  margin: 1rem auto;  
+  margin: 1rem auto;
   padding: 0 1rem;
   border-radius: 16px !important;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15) !important;
-  background-color: #fffffff2 !important;
+  background-color: #ffffff !important;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 10px 40px rgba(53, 10, 134, 0.171) !important;
+}
+
+.forgotPassword-card {
+  width: 100%;
+  max-width: 500px;
+  padding: 1.5rem;
+  margin: 2rem auto;
+  border-radius: 16px !important;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15) !important;
+  transition: box-shadow 0.3s ease;
+}
+
+.forgotPassword-card:hover {
+  box-shadow: 0 10px 40px rgba(54, 10, 134, 0.171) !important;
 }
 
 .title {
   text-align: center;
   margin-bottom: 1.5rem !important;
-  color: rgb(4, 94, 76);
+  color: #42119e;
   font-size: 2rem !important;
   font-weight: 700 !important;
   letter-spacing: 1px !important;
@@ -30,7 +48,7 @@
 }
 
 .forgotPassword {
-  color: #0c7661;
+  color: #5119B7;
   text-align: right;
   cursor: pointer;
   text-decoration: underline;
@@ -40,11 +58,18 @@
 }
 
 .forgotPassword:hover {
-  color: #054c3f !important;
+  color: #3c0a98 !important;
+}
+
+.forgotPassword-text {
+  font-family: Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }
 
 .loginBtn {
-  background-color: #076653 !important;
+  background-color: #5119B7 !important;
   color: white !important;
   margin-top: 1rem !important;
   font-weight: bold !important;
@@ -53,7 +78,7 @@
 }
 
 .resetBtn {
-  background-color: #076653 !important;
+  background-color: #5119B7 !important;
   color: white !important;
   font-weight: bold !important;
   border-radius: 50px !important;
@@ -63,12 +88,19 @@
 
 .loginBtn:hover,
 .resetBtn:hover {
-  background-color: #054d3e !important;
+  background-color: #3b059d !important;
+  box-shadow: 0 4px 10px rgba(54, 10, 134, 0.4) !important;
+  transition: all 0.3s ease;
+}
+
+.loginBtn:active,
+.resetBtn:active {
+  transform: scale(0.97);
 }
 
 .signupBtn {
-  border-color: #076653 !important;
-  color: #076653 !important;
+  border-color: #5119B7 !important;
+  color: #5119B7 !important;
   margin-top: 0.5rem !important;
   font-weight: bold !important;
   border-radius: 50px !important;
@@ -76,32 +108,29 @@
 }
 
 .signupBtn:hover {
-  background-color: #054d3e;
-  color: rgb(232, 242, 235) !important;
+  background-color: #3b059d;
+  color: rgb(235, 232, 242) !important;
+  box-shadow: 0 4px 10px rgba(54, 10, 134, 0.4);
+  transition: all 0.3s ease;
+}
+
+.signupBtn:active {
+  transform: scale(0.97);
 }
 
 .image {
   width: 200px !important;
   height: 200px;
   margin-top: 1rem;
-  transition: transform 0.3s ease;
-}
-
-.image:hover {
-  transform: scale(1.03);
+  box-shadow: 0 6px 18px rgba(119, 81, 181, 0.24);
+  border-radius: 50%;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .login-field .MuiInput-underline:hover:before {
-  border-bottom-color: rgb(4, 94, 76) !important;
+  border-bottom-color: #5119B7 !important;
 }
 
 .login-icon-button {
-    color: rgb(4, 94, 76) !important;
-}
-
-.forgotPassword-text {
-  font-family: Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: 0.5px;
+  color: #5119B7 !important;
 }

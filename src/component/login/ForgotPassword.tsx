@@ -32,7 +32,7 @@ const ForgotPassword: React.FC = () => {
 
     return (
         <Box className="rootBox" display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
-            <Card className="card" sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <Card className="forgotPassword-card" sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <CardContent>
                     <Typography variant="h5" className="title" m={1}>
                         Forgot Password
