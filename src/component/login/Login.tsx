@@ -4,60 +4,85 @@ import './style.css';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import img from '../../assets/images/Huewine_Wi.svg';
-// import img from '../../assets/vite.svg';
 import CommonTextField from '../utils/CommonTextField';
 import CommonButton from '../utils/CommonButton';
 import { validateEmail, validatePassword } from '../utils/validation';
+import { useSnackbar } from '../context/SnackBarContext';
+
+interface User {
+  email: string;
+  password: string;
+}
 
 const Login = () => {
-  const [formData, setFormData] = useState({
+
+  const initialFormState: User = {
     email: "",
     password: "",
-    emailError: "",
-    passwordError: "",
-  });
+  };
+
+  const initialErrorState = {
+    email: "",
+    password: "",
+  };
+
+  const [formData, setFormData] = useState<User>(initialFormState);
+  const [errors, setErrors] = useState(initialErrorState);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const { showSnackbar } = useSnackbar();
 
   const validateForm = () => {
-    let isValid = true;
-    const newErrors: { emailError?: string; passwordError?: string } = {};
 
-    const emailError = validateEmail(formData.email);
-    const passwordError = validatePassword(formData.password);
+    const newErrors = {
+      email: validateEmail(formData.email),
+      password: validatePassword(formData.password),
+    };
 
-    if (emailError) {
-      newErrors.emailError = emailError;
-      isValid = false;
+    setErrors(newErrors);
+
+    if (newErrors.email) {
+      showSnackbar(newErrors.email, 'error');
+      return false;
+    }
+    if (newErrors.password) {
+      showSnackbar(newErrors.password, 'error');
+      return false;
     }
 
-    if (passwordError) {
-      newErrors.passwordError = passwordError;
-      isValid = false;
-    }
-
-    setFormData((prev) => ({ ...prev, ...newErrors }));
-    return isValid;
+    return Object.values(newErrors).every((error) => error === "");
   };
 
   const navigate = useNavigate();
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (validateForm()) {
-      alert("Login Successful!");
-      setFormData({
-        email: "",
-        password: "",
-        emailError: "",
-        passwordError: "",
-      });
-      navigate("/products");
+    if (!validateForm()) {
+      return;
     }
+
+    showSnackbar("Login Successful!", "success");
+    navigate("/products");
+
+    setFormData(initialFormState);
+    setErrors(initialErrorState);
   };
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value, [name + "Error"]: "" }));
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
-  const [showPassword, setShowPassword] = useState(false);
+
+  const handlePrevent = (e: React.ClipboardEvent<any>) => {
+    e.preventDefault();
+    showSnackbar(`${e.type} action is disabled for security.`, "warning");
+  };
+
   useEffect(() => {
     document.title = "Huewine - Login";
   }, []);
@@ -75,28 +100,25 @@ const Login = () => {
                 <CommonTextField
                   label="Email"
                   name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  error={!!formData.emailError}
-                  helperText={formData.emailError}
-                  required
                   className="login-field"
+                  value={formData.email}
+                  error={!!errors.email}
+                  onChange={handleChange}
+                  required
                 />
-
                 <CommonTextField
                   label="Password"
                   name="password"
+                  className="login-field"
                   value={formData.password}
                   onChange={handleChange}
-                  error={!!formData.passwordError}
-                  helperText={formData.passwordError}
-                  required
-                  className="login-field"
+                  error={!!errors.password}
                   showPasswordToggle
                   showPassword={showPassword}
                   setShowPassword={setShowPassword}
+                  onPaste={handlePrevent}
+                  required
                 />
-
                 <Typography
                   variant="body2"
                   className="forgotPassword"
@@ -127,6 +149,7 @@ const Login = () => {
               </form>
             </CardContent>
           </Grid>
+
           <Grid
             size={{ xs: 12, sm: 6 }} display="flex" justifyContent="center" alignItems="center"
             p={2} >

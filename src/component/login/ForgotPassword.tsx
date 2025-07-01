@@ -10,24 +10,63 @@ import CommonTextField from '../utils/CommonTextField';
 import CommonButton from '../utils/CommonButton';
 import './style.css';
 import { validateEmail } from '../utils/validation';
+import { useSnackbar } from '../context/SnackBarContext';
+
+interface User {
+    email: string;
+}
 
 const ForgotPassword: React.FC = () => {
-    const [email, setEmail] = useState('');
-    const [emailError, setEmailError] = useState('');
-    const navigate = useNavigate();
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        const error = validateEmail(email);
-        if (error) {
-            setEmailError(error);
-            return;
+    const initialFormState: User = {
+        email: "",
+    };
+
+    const initialErrorState = {
+        email: "",
+    };
+
+    const [formData, setFormData] = useState<User>(initialFormState);
+    const [errors, setErrors] = useState(initialErrorState);
+
+    const navigate = useNavigate();
+    const { showSnackbar } = useSnackbar();
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+
+        setFormData((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
+    const validateForm = () => {
+
+        const newErrors = {
+            email: validateEmail(formData.email),
+        };
+
+        setErrors(newErrors);
+
+        if (newErrors.email) {
+            showSnackbar(newErrors.email, 'error');
+            return false;
         }
 
-        setEmailError('');
-        alert('Reset link sent to your email');
+        return Object.values(newErrors).every((error) => error === "");
+    };
+
+    const handleSubmit = (e: React.FormEvent) => {
+
+        e.preventDefault();
+        if (!validateForm()) {
+            return;
+        }
+        showSnackbar('Reset link sent to your email', 'success');
         navigate('/login');
-        setEmail('');
+
+        setFormData(initialFormState);
+        setErrors(initialErrorState);
     };
 
     return (
@@ -44,10 +83,9 @@ const ForgotPassword: React.FC = () => {
                         <CommonTextField
                             label="Email"
                             name="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            error={!!emailError}
-                            helperText={emailError}
+                            value={formData.email}
+                            onChange={handleChange}
+                            error={!!errors.email}
                             className="login-field"
                             required
                         />

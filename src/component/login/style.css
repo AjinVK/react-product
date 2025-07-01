@@ -89,14 +89,18 @@
 .loginBtn:hover,
 .resetBtn:hover {
   background-color: #3b059d !important;
-  box-shadow: 0 4px 10px rgba(54, 10, 134, 0.4) !important;
-  transition: all 0.3s ease;
+  color: rgb(243, 240, 250) !important;
+  border-color: #3b059d !important;
+  box-shadow: 0 4px 12px rgba(54, 10, 134, 0.4) !important;
+  transform: scale(1.01);
+  transition: all 0.3s ease-in-out;
 }
 
 .loginBtn:active,
 .resetBtn:active {
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.3);
   transform: scale(0.97);
-}
+} 
 
 .signupBtn {
   border-color: #5119B7 !important;
@@ -109,12 +113,14 @@
 
 .signupBtn:hover {
   background-color: #3b059d;
-  color: rgb(235, 232, 242) !important;
-  box-shadow: 0 4px 10px rgba(54, 10, 134, 0.4);
-  transition: all 0.3s ease;
+  color: rgb(243 240, 250) !important;
+  box-shadow: 0 4px 12px rgba(54, 10, 134, 0.4);
+  transform: scale(1.01);
+  transition: all 0.3s ease-in-out;
 }
 
 .signupBtn:active {
+  box-shadow: inset 0 3px 6px rgba(54, 10, 134, 0.4);
   transform: scale(0.97);
 }
 
@@ -127,8 +133,14 @@
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-.login-field .MuiInput-underline:hover:before {
+.login-field .MuiInput-underline:hover:before,
+.login-field .MuiInput-underline:after {
   border-bottom-color: #5119B7 !important;
+}
+
+.login-field .MuiInputLabel-root.Mui-focused,
+.login-field:hover .MuiInputLabel-root {
+  color: #5119B7 !important;
 }
 
 .login-icon-button {

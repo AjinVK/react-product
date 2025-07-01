@@ -23,6 +23,7 @@ interface CommonTextFieldProps {
     showPassword?: boolean;
     setShowPassword?: React.Dispatch<React.SetStateAction<boolean>>;
     className?: string;
+    onPaste?: (e: React.ClipboardEvent<any>) => void;
 }
 
 const CommonTextField = ({
@@ -39,6 +40,7 @@ const CommonTextField = ({
     showPassword,
     setShowPassword,
     className,
+    onPaste
 }: CommonTextFieldProps) => {
     const getInputType = () => {
         if (showPasswordToggle && showPassword !== undefined) {
@@ -66,6 +68,16 @@ const CommonTextField = ({
         return undefined;
     };
 
+    const handlePreventCopyPaste = (
+        e: React.ClipboardEvent<any>,
+        customHandler?: (e: React.ClipboardEvent<any>) => void
+    ) => {
+        e.preventDefault();
+        if (customHandler) {
+            customHandler(e);
+        }
+    };
+
     return (
         <TextField
             label={label}
@@ -81,6 +93,7 @@ const CommonTextField = ({
             error={error}
             helperText={helperText}
             InputProps={getInputProps()}
+            onPaste={(e) => handlePreventCopyPaste(e, onPaste)}
         />
     );
 };

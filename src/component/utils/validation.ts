@@ -1,3 +1,9 @@
+export type FormErrors = {
+    email?: string;
+    password?: string;
+    [key: string]: string | undefined;
+}
+
 export const validateEmail = (email: string): string => {
     if (!email.trim()) {
         return 'Email is required';
@@ -7,7 +13,6 @@ export const validateEmail = (email: string): string => {
     if (!emailRegex.test(email)) {
         return 'Enter a valid email';
     }
-
     return '';
 };
 
@@ -15,10 +20,8 @@ export const validatePassword = (password: string): string => {
     if (!password.trim()) {
         return 'Password is required';
     }
-
     if (password.length < 6) {
         return 'Password must be at least 6 characters';
     }
-
     return '';
 };
