@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '@mui/material';
+import { Button, type SxProps, type Theme } from '@mui/material';
 
 interface CommonButtonProps {
     type?: 'button' | 'submit' | 'reset';
@@ -9,6 +9,7 @@ interface CommonButtonProps {
     className?: string;
     disabled?: boolean;
     children: React.ReactNode;
+    sx?: SxProps<Theme>;
 }
 
 const CommonButton = ({
@@ -19,6 +20,7 @@ const CommonButton = ({
     className = '',
     disabled = false,
     children,
+    sx = {},
 }: CommonButtonProps) => {
     return (
         <Button
@@ -28,6 +30,7 @@ const CommonButton = ({
             fullWidth={fullWidth}
             className={className}
             disabled={disabled}
+            sx={sx}
         >
             {children}
         </Button>

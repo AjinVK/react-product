@@ -3,57 +3,41 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
   box-sizing: border-box;
   background: linear-gradient(135deg, #f2f0f600, #e7dcf6c1);
 }
 
-.card {
+.card,
+.forgotPassword-card {
   width: 100% !important;
-  max-width: 600px !important;
-  margin: 1rem auto;
-  padding: 0 1rem;
+  max-width: 600px;
   border-radius: 16px !important;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15) !important;
   background-color: #ffffff !important;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15) !important;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card:hover {
-  box-shadow: 0 10px 40px rgba(53, 10, 134, 0.171) !important;
+.card {
+  margin: 1rem auto;
 }
 
-.forgotPassword-card {
-  width: 100%;
-  max-width: 500px;
-  padding: 1.5rem;
-  margin: 2rem auto;
-  border-radius: 16px !important;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15) !important;
-  transition: box-shadow 0.3s ease;
-}
-
+.card:hover,
 .forgotPassword-card:hover {
-  box-shadow: 0 10px 40px rgba(54, 10, 134, 0.171) !important;
+  box-shadow: 0 10px 40px rgba(53, 10, 134, 0.2) !important;
 }
 
 .title {
   text-align: center;
-  margin-bottom: 1.5rem !important;
   color: #42119e;
-  font-size: 2rem !important;
-  font-weight: 700 !important;
   letter-spacing: 1px !important;
+  font-weight: bold !important;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
 }
 
 .forgotPassword {
-  color: #5119B7;
+  color: #5119B7 !important;
   text-align: right;
   cursor: pointer;
-  text-decoration: underline;
-  margin: 8px 0 0 auto !important;
-  font-size: 0.9rem !important;
   transition: color 0.2s ease;
 }
 
@@ -68,22 +52,18 @@
   letter-spacing: 0.5px;
 }
 
-.loginBtn {
-  background-color: #5119B7 !important;
-  color: white !important;
-  margin-top: 1rem !important;
+.loginBtn,
+.resetBtn,
+.signupBtn {
   font-weight: bold !important;
   border-radius: 50px !important;
-  padding: 0.8rem 1.5rem !important;
+  transition: background-color 0.3s ease;
 }
 
+.loginBtn,
 .resetBtn {
   background-color: #5119B7 !important;
   color: white !important;
-  font-weight: bold !important;
-  border-radius: 50px !important;
-  padding: 0.8rem 1.5rem !important;
-  margin-top: 16px !important;
 }
 
 .loginBtn:hover,
@@ -100,15 +80,12 @@
 .resetBtn:active {
   box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.3);
   transform: scale(0.97);
-} 
+}
 
 .signupBtn {
   border-color: #5119B7 !important;
   color: #5119B7 !important;
-  margin-top: 0.5rem !important;
-  font-weight: bold !important;
-  border-radius: 50px !important;
-  padding: 0.8rem 1.5rem !important;
+  background-color: transparent;
 }
 
 .signupBtn:hover {
@@ -125,12 +102,8 @@
 }
 
 .image {
-  width: 200px !important;
-  height: 200px;
-  margin-top: 1rem;
   box-shadow: 0 6px 18px rgba(119, 81, 181, 0.24);
   border-radius: 50%;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .login-field .MuiInput-underline:hover:before,
