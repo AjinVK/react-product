@@ -8,10 +8,11 @@
 }
 
 .card,
-.forgotPassword-card {
+.forgotPassword-card,
+.signUp-card {
   width: 100% !important;
   max-width: 600px;
-  border-radius: 16px !important;
+  border-radius: 24px !important;
   background-color: #ffffff !important;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15) !important;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -22,13 +23,14 @@
 }
 
 .card:hover,
-.forgotPassword-card:hover {
+.forgotPassword-card:hover,
+.signUp-card:hover {
   box-shadow: 0 10px 40px rgba(53, 10, 134, 0.2) !important;
 }
 
 .title {
   text-align: center;
-  color: #42119e;
+  color: #5119B7;
   letter-spacing: 1px !important;
   font-weight: bold !important;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
@@ -54,20 +56,24 @@
 
 .loginBtn,
 .resetBtn,
-.signupBtn {
+.signupBtn,
+.registerBtn,
+.clearBtn {
   font-weight: bold !important;
   border-radius: 50px !important;
   transition: background-color 0.3s ease;
 }
 
 .loginBtn,
-.resetBtn {
+.resetBtn,
+.registerBtn {
   background-color: #5119B7 !important;
   color: white !important;
 }
 
 .loginBtn:hover,
-.resetBtn:hover {
+.resetBtn:hover,
+.registerBtn:hover {
   background-color: #3b059d !important;
   color: rgb(243, 240, 250) !important;
   border-color: #3b059d !important;
@@ -77,18 +83,21 @@
 }
 
 .loginBtn:active,
-.resetBtn:active {
+.resetBtn:active,
+.registerBtn:active {
   box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.3);
   transform: scale(0.97);
 }
 
-.signupBtn {
+.signupBtn,
+.clearBtn {
   border-color: #5119B7 !important;
   color: #5119B7 !important;
   background-color: transparent;
 }
 
-.signupBtn:hover {
+.signupBtn:hover,
+.clearBtn:hover {
   background-color: #3b059d;
   color: rgb(243 240, 250) !important;
   box-shadow: 0 4px 12px rgba(54, 10, 134, 0.4);
@@ -96,7 +105,8 @@
   transition: all 0.3s ease-in-out;
 }
 
-.signupBtn:active {
+.signupBtn:active,
+.clearBtn:active {
   box-shadow: inset 0 3px 6px rgba(54, 10, 134, 0.4);
   transform: scale(0.97);
 }

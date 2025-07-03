@@ -11,12 +11,12 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 import img from '../../assets/images/Huewine_Wi.svg';
-import CommonTextField from '../utils/CommonTextField';
-import CommonButton from '../utils/CommonButton';
-import { validateEmail, validatePassword } from '../utils/validation';
-import { useSnackbar } from '../context/SnackBarContext';
+import CommonTextField from '../../component/common/CommonTextField';
+import CommonButton from '../../component/common/CommonButton';
+import { validateEmail, validatePassword } from '../../utils/validation';
+import { useSnackbar } from '../../context/SnackBarContext';
 
-import './style.css';
+import '../fromStyle.css';
 
 interface User {
   email: string;
@@ -43,6 +43,10 @@ const Login: React.FC = () => {
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSignUpClick = () => {
+    navigate('/signup');
   };
 
   const handlePrevent = (e: React.ClipboardEvent) => {
@@ -98,7 +102,7 @@ const Login: React.FC = () => {
         }}
       >
         <Grid container wrap="nowrap">
-          <Grid size={{ xs: 12, sm: 6 }}>
+          <Grid size={{ sm: 6 }}>
             <CardContent
               sx={{
                 p: { xs: 2, sm: 5 },
@@ -201,7 +205,7 @@ const Login: React.FC = () => {
                         sm: '0.94rem',
                       },
                     }}
-                  // onClick={() => navigate('/signup')}
+                    onClick={handleSignUpClick}
                   >
                     Sign Up
                   </CommonButton>

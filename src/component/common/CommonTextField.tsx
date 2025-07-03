@@ -23,6 +23,9 @@ interface CommonTextFieldProps {
     showPassword?: boolean;
     setShowPassword?: React.Dispatch<React.SetStateAction<boolean>>;
     className?: string;
+    onBlur?: () => void;
+    onCopy?: (e: React.ClipboardEvent<any>) => void;
+    onCut?: (e: React.ClipboardEvent<any>) => void;
     onPaste?: (e: React.ClipboardEvent<any>) => void;
 }
 
@@ -40,6 +43,9 @@ const CommonTextField = ({
     showPassword,
     setShowPassword,
     className,
+    onBlur,
+    onCopy,
+    onCut,
     onPaste
 }: CommonTextFieldProps) => {
     const getInputType = () => {
@@ -93,6 +99,9 @@ const CommonTextField = ({
             error={error}
             helperText={helperText}
             InputProps={getInputProps()}
+            onBlur={onBlur}
+            onCopy={(e) => handlePreventCopyPaste(e, onCopy)}
+            onCut={(e) => handlePreventCopyPaste(e, onCut)}
             onPaste={(e) => handlePreventCopyPaste(e, onPaste)}
         />
     );

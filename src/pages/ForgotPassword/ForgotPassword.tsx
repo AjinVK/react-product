@@ -115,7 +115,7 @@
 // export default ForgotPassword;
 
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Box,
     Card,
@@ -123,11 +123,11 @@ import {
     Typography,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import CommonTextField from '../utils/CommonTextField';
-import CommonButton from '../utils/CommonButton';
-import { validateEmail } from '../utils/validation';
-import { useSnackbar } from '../context/SnackBarContext';
-import './style.css';
+import CommonTextField from '../../component/common/CommonTextField';
+import CommonButton from '../../component/common/CommonButton';
+import { validateEmail } from '../../utils/validation';
+import { useSnackbar } from '../../context/SnackBarContext';
+import '../fromStyle.css';
 
 interface User {
     email: string;
@@ -136,6 +136,10 @@ interface User {
 const ForgotPassword: React.FC = () => {
     const navigate = useNavigate();
     const { showSnackbar } = useSnackbar();
+
+    useEffect(() => {
+        document.title = 'Huewine - Forgot Password';
+    }, []);
 
     const [formData, setFormData] = useState<User>({ email: '' });
     const [errors, setErrors] = useState<{ email: string }>({ email: '' });
@@ -178,9 +182,9 @@ const ForgotPassword: React.FC = () => {
             <Card
                 className="forgotPassword-card"
                 sx={{
-                    py: { xs: 3, sm: 4 },
                     px: { xs: 2, sm: 4 },
-                    maxWidth: {xs: '100%', sm: 500},
+                    py: { xs: 3, sm: 4 },
+                    maxWidth: { xs: '100%', sm: 500 },
                 }}
             >
                 <CardContent>

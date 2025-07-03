@@ -1,5 +1,5 @@
 import { Card, CardContent, CardMedia, Typography } from '@mui/material';
-import '../products/style.css';
+import '../../pages/Products/productStyle.css';
 
 interface CommonImageCardProps {
   title: string;

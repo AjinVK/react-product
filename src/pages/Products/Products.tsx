@@ -1,9 +1,9 @@
 import { Box, Container, Grid, useMediaQuery, useTheme } from "@mui/material";
-import { handleNavigation } from '../routes/navLinks';
+import { handleNavigation } from '../../routes/productRoutes';
 import { images } from "../../assets/images";
-import './style.css';
-import ResponsiveAppBar from "../responsiveappbar/ResponsiveAppBar";
-import CommonImageCard from '../utils/CommonCard';
+import './productStyle.css';
+import ResponsiveAppBar from "../../component/responsiveappbar/ResponsiveAppBar";
+import CommonImageCard from "../../component/common/CommonCard";
 import { motion } from 'framer-motion';
 import { useEffect, useMemo } from "react";
 
