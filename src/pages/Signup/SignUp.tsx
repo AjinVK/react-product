@@ -10,7 +10,7 @@ import { useSnackbar } from "../../context/SnackBarContext";
 import {
     validateUserName,
     validateEmail,
-    validatePassword,
+    validateSignUpPassword ,
     validateConfirmPassword,
 } from "../../utils/validation";
 
@@ -67,7 +67,7 @@ const SignUp = () => {
         const newErrors = {
             userName: validateUserName(formData.userName),
             email: validateEmail(formData.email),
-            createPassword: validatePassword(formData.createPassword),
+            createPassword: validateSignUpPassword (formData.createPassword),
             confirmPassword: validateConfirmPassword(formData.createPassword, formData.confirmPassword),
         };
 

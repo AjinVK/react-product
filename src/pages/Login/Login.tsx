@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import img from '../../assets/images/Huewine_Wi.svg';
 import CommonTextField from '../../component/common/CommonTextField';
 import CommonButton from '../../component/common/CommonButton';
-import { validateEmail, validatePassword } from '../../utils/validation';
+import { validateEmail, validateLoginPassword  } from '../../utils/validation';
 import { useSnackbar } from '../../context/SnackBarContext';
 
 import '../fromStyle.css';
@@ -57,7 +57,7 @@ const Login: React.FC = () => {
   const validateForm = () => {
     const newErrors = {
       email: validateEmail(formData.email),
-      password: validatePassword(formData.password),
+      password: validateLoginPassword (formData.password),
     };
 
     setErrors(newErrors);
@@ -129,7 +129,6 @@ const Login: React.FC = () => {
                   value={formData.email}
                   onChange={handleChange}
                   error={!!errors.email}
-                  // helperText={errors.email}
                   required
                   className="login-field"
                 />
@@ -140,7 +139,6 @@ const Login: React.FC = () => {
                   value={formData.password}
                   onChange={handleChange}
                   error={!!errors.password}
-                  // helperText={errors.password}
                   showPasswordToggle
                   showPassword={showPassword}
                   setShowPassword={setShowPassword}

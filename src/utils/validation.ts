@@ -25,10 +25,19 @@ export const validateEmail = (email: string): string => {
     if (!emailRegex.test(email)) {
         return 'Enter a valid email';
     }
+
     return '';
 };
 
-export const validatePassword = (password: string): string => {
+export const validateLoginPassword = (password: string): string => {
+    if (!password.trim()) {
+        return 'Password is required';
+    }
+
+    return '';
+};
+
+export const validateSignUpPassword = (password: string): string => {
     if (!password.trim()) {
         return 'Password is required';
     }
