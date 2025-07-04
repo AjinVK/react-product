@@ -10,11 +10,12 @@ import { useSnackbar } from "../../context/SnackBarContext";
 import {
     validateUserName,
     validateEmail,
-    validateSignUpPassword ,
+    validateSignUpPassword,
     validateConfirmPassword,
 } from "../../utils/validation";
 
 import { getPasswordStrength, type PasswordStrength } from "../../utils/passwordUtils";
+import MuiLink from '@mui/material/Link';
 
 import "../fromStyle.css";
 
@@ -67,7 +68,7 @@ const SignUp = () => {
         const newErrors = {
             userName: validateUserName(formData.userName),
             email: validateEmail(formData.email),
-            createPassword: validateSignUpPassword (formData.createPassword),
+            createPassword: validateSignUpPassword(formData.createPassword),
             confirmPassword: validateConfirmPassword(formData.createPassword, formData.confirmPassword),
         };
 
@@ -109,7 +110,6 @@ const SignUp = () => {
         <Box
             className="rootBox"
             sx={{
-                minHeight: "100vh",
                 px: { xs: 2, sm: 4 },
                 py: { xs: 3, sm: 5 },
             }}
@@ -205,6 +205,21 @@ const SignUp = () => {
                             onPaste={handlePrevent}
                             required
                         />
+
+                        <Typography
+                            variant="body2"
+                            align="center"
+                            sx={{ mt: 5, fontSize: '0.85rem', color: '#666' }}
+                        >
+                            By creating an account you agree to our{' '}
+                            <MuiLink
+                                href="#"
+                                underline="hover"
+                                sx={{ color: '#320881', fontWeight: 500 }}
+                            >
+                                Terms & Privacy
+                            </MuiLink>
+                        </Typography>
 
                         <CardActions
                             sx={{

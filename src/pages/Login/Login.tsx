@@ -4,19 +4,20 @@ import {
   Card,
   CardContent,
   CardActions,
-  CardMedia,
   Grid,
   Typography,
+  FormControlLabel,
+  Checkbox,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-import img from '../../assets/images/Huewine_Wi.svg';
 import CommonTextField from '../../component/common/CommonTextField';
 import CommonButton from '../../component/common/CommonButton';
-import { validateEmail, validateLoginPassword  } from '../../utils/validation';
+import { validateEmail, validateLoginPassword } from '../../utils/validation';
 import { useSnackbar } from '../../context/SnackBarContext';
 
 import '../fromStyle.css';
+import './checkBox.css';
 
 interface User {
   email: string;
@@ -32,9 +33,14 @@ const Login: React.FC = () => {
     email: '',
     password: '',
   });
+  const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
+    const token = localStorage.getItem("token") || sessionStorage.getItem("token");
+    if (token) {
+      navigate("/dashboard");
+    }
     document.title = 'Huewine - Login';
   }, []);
 
@@ -46,7 +52,8 @@ const Login: React.FC = () => {
   };
 
   const handleSignUpClick = () => {
-    navigate('/signup');
+    showSnackbar("Sign Up is currently unavailable. Please try again later.", "info");
+    // navigate('/signup');
   };
 
   const handlePrevent = (e: React.ClipboardEvent) => {
@@ -57,7 +64,7 @@ const Login: React.FC = () => {
   const validateForm = () => {
     const newErrors = {
       email: validateEmail(formData.email),
-      password: validateLoginPassword (formData.password),
+      password: validateLoginPassword(formData.password),
     };
 
     setErrors(newErrors);
@@ -73,8 +80,15 @@ const Login: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const fakeToken = "abc123";
 
     if (!validateForm()) return;
+
+    if (rememberMe) {
+      localStorage.setItem("token", fakeToken);
+    } else {
+      sessionStorage.setItem("token", fakeToken);
+    }
 
     showSnackbar('Login Successful!', 'success');
     navigate('/products');
@@ -87,7 +101,7 @@ const Login: React.FC = () => {
     <Box
       className="rootBox"
       sx={{
-        px: { xs: 1, sm: 4 },
+        px: { xs: 2, sm: 4 },
         py: { xs: 3, sm: 4 },
       }}
     >
@@ -102,7 +116,9 @@ const Login: React.FC = () => {
         }}
       >
         <Grid container wrap="nowrap">
-          <Grid size={{ sm: 6 }}>
+          <Grid
+            p={{ xs: 1, sm: 1 }}
+          >
             <CardContent
               sx={{
                 p: { xs: 2, sm: 5 },
@@ -147,13 +163,50 @@ const Login: React.FC = () => {
                   className="login-field"
                 />
 
+                <FormControlLabel
+                  sx={{
+                    mt: 1,
+                    ml: 1,
+                  }}
+                  control={
+                    <Checkbox
+                      checked={rememberMe}
+                      onChange={(e) => setRememberMe(e.target.checked)}
+                      disableRipple
+                      icon={<span className="checkbox-box" />}
+                      checkedIcon={<span className="checkbox-box checkbox-checked" />}
+                      inputProps={{ 'aria-label': 'custom checkbox' }}
+                      sx={{
+                        padding: 0,
+                        mr: 1,
+                        '&:hover': {
+                          backgroundColor: 'rgba(50, 8, 129, 0.08)',
+                          borderRadius: '4px',
+                        },
+                      }}
+                    />
+                  }
+                  label={
+                    <Typography
+                      sx={{
+                        fontSize: '0.85rem',
+                        color: '#5119B7',
+                        fontWeight: 500,
+                        userSelect: 'none',
+                      }}
+                    >
+                      Remember Me
+                    </Typography>
+                  }
+                />
+
                 <Typography
                   variant="body2"
                   color="primary"
                   className="forgotPassword"
                   onClick={() => navigate('/forgot-password')}
                   sx={{
-                    mt: { xs: 1, sm: 1.5 },
+                    mt: { xs: 1, sm: 0 },
                     fontSize: { xs: '0.81rem', sm: '0.85rem' },
                   }}
                 >
@@ -164,7 +217,7 @@ const Login: React.FC = () => {
                   sx={{
                     flexDirection: 'column',
                     gap: 3,
-                    mt: 3,
+                    mt: 1.5,
                     px: 0,
                   }}
                 >
@@ -188,11 +241,12 @@ const Login: React.FC = () => {
                     Login
                   </CommonButton>
 
-                  <CommonButton
+                  {/* <CommonButton
                     type="button"
                     variant="outlined"
                     fullWidth
                     className="signupBtn"
+                    disabled
                     sx={{
                       padding: {
                         xs: '0.6rem 1rem',
@@ -206,32 +260,10 @@ const Login: React.FC = () => {
                     onClick={handleSignUpClick}
                   >
                     Sign Up
-                  </CommonButton>
+                  </CommonButton> */}
                 </CardActions>
               </form>
             </CardContent>
-          </Grid>
-
-          <Grid size={{ xs: 12, sm: 6 }}
-            sx={{
-              backgroundColor: '#ffffff',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              p: 2,
-            }}
-          >
-            <CardMedia
-              component="img"
-              image={img}
-              alt="Login Illustration"
-              className="image"
-              sx={{
-                width: { xs: '80%', sm: '100%' },
-                maxHeight: 300,
-                objectFit: 'contain',
-              }}
-            />
           </Grid>
         </Grid>
       </Card>

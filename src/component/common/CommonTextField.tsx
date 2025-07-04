@@ -1,13 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     TextField,
     InputAdornment,
     IconButton,
 } from '@mui/material';
-import {
-    VisibilityOutlined,
-    VisibilityOffOutlined,
-} from '@mui/icons-material';
+import { EyelashEye, EyelashEyeOff } from '../../assets/icons/EyelashEye';
 
 interface CommonTextFieldProps {
     label: string;
@@ -48,6 +45,8 @@ const CommonTextField = ({
     onCut,
     onPaste
 }: CommonTextFieldProps) => {
+    const [bounceToggle, setBounceToggle] = useState(false);
+
     const getInputType = () => {
         if (showPasswordToggle && showPassword !== undefined) {
             return showPassword ? 'text' : 'password';
@@ -61,11 +60,22 @@ const CommonTextField = ({
                 endAdornment: (
                     <InputAdornment position="end">
                         <IconButton
-                            onClick={() => setShowPassword((prev) => !prev)}
+                            onClick={() => {
+                                setShowPassword((prev) => !prev);
+                                setBounceToggle(true);
+                                setTimeout(() => setBounceToggle(false), 300);
+                            }}
                             edge="end"
-                            className="login-icon-button"
+                            // className="login-icon-button"
+                            sx={{ p: 0.7 }}
                         >
-                            {showPassword ? <VisibilityOutlined /> : <VisibilityOffOutlined />}
+                            <span className={bounceToggle ? 'bounce-icon' : ''}>
+                                {showPassword ? (
+                                    <EyelashEye color="#5119B7" size={20} />
+                                ) : (
+                                    <EyelashEyeOff color="#5119B7" size={20} />
+                                )}
+                            </span>
                         </IconButton>
                     </InputAdornment>
                 ),
@@ -79,9 +89,7 @@ const CommonTextField = ({
         customHandler?: (e: React.ClipboardEvent<any>) => void
     ) => {
         e.preventDefault();
-        if (customHandler) {
-            customHandler(e);
-        }
+        if (customHandler) customHandler(e);
     };
 
     return (
@@ -108,3 +116,4 @@ const CommonTextField = ({
 };
 
 export default CommonTextField;
+
