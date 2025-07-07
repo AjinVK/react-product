@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Card,
@@ -51,10 +51,10 @@ const Login: React.FC = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSignUpClick = () => {
-    showSnackbar("Sign Up is currently unavailable. Please try again later.", "info");
-    navigate('/signup');
-  };
+  // const handleSignUpClick = () => {
+  //   showSnackbar("Sign Up is currently unavailable. Please try again later.", "info");
+  //   navigate('/signup');
+  // };
 
   const handlePrevent = (e: React.ClipboardEvent) => {
     e.preventDefault();
