@@ -36,13 +36,13 @@ const Login: React.FC = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token") || sessionStorage.getItem("token");
-    if (token) {
-      navigate("/dashboard");
-    }
-    document.title = 'Huewine - Login';
-  }, []);
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token") || sessionStorage.getItem("token");
+  //   if (token) {
+  //     // navigate("/dashboard");
+  //   }
+  //   document.title = 'Huewine - Login';
+  // }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -53,7 +53,7 @@ const Login: React.FC = () => {
 
   const handleSignUpClick = () => {
     showSnackbar("Sign Up is currently unavailable. Please try again later.", "info");
-    // navigate('/signup');
+    navigate('/signup');
   };
 
   const handlePrevent = (e: React.ClipboardEvent) => {

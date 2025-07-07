@@ -22,8 +22,8 @@ export const EyelashEye = ({ color = '#320881', size = 20 }: IconProps) => (
     </svg>
 );
 
-export const EyelashEyeOff = ({ color = '#320881', size = 20 }: IconProps) => (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+export const EyelashEyeOff = ({color = '#320881', size = 20 }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
         <path
             d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12Z"
             stroke={color}

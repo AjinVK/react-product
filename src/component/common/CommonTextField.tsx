@@ -71,9 +71,9 @@ const CommonTextField = ({
                         >
                             <span className={bounceToggle ? 'bounce-icon' : ''}>
                                 {showPassword ? (
-                                    <EyelashEye color="#5119B7" size={20} />
+                                    <EyelashEye color="#5119B7" size={21} />
                                 ) : (
-                                    <EyelashEyeOff color="#5119B7" size={20} />
+                                    <EyelashEyeOff color="#5119B7" size={21} />
                                 )}
                             </span>
                         </IconButton>

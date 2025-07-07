@@ -106,7 +106,7 @@ const ResponsiveAppBar: React.FC = () => {
                 <MenuItem key={setting} onClick={() => {
                   handleCloseUserMenu();
                   if (setting === 'Logout') {
-                    navigate('/login');
+                    navigate('/');
                   }
                 }}
                 >
