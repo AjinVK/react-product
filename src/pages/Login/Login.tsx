@@ -13,14 +13,14 @@ import { useNavigate } from 'react-router-dom';
 
 import CommonTextField from '../../component/common/CommonTextField';
 import CommonButton from '../../component/common/CommonButton';
-import { validateEmail, validateLoginPassword } from '../../utils/validation';
+import { validateLoginPassword, validateUserName } from '../../utils/validation';
 import { useSnackbar } from '../../context/SnackBarContext';
 
 import '../fromStyle.css';
 import './checkBox.css';
 
 interface User {
-  email: string;
+  userName: string;
   password: string;
 }
 
@@ -28,9 +28,9 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
   const { showSnackbar } = useSnackbar();
 
-  const [formData, setFormData] = useState<User>({ email: '', password: '' });
-  const [errors, setErrors] = useState<{ email: string; password: string }>({
-    email: '',
+  const [formData, setFormData] = useState<User>({ userName: '', password: '' });
+  const [errors, setErrors] = useState<{ userName: string; password: string }>({
+    userName: '',
     password: '',
   });
   const [rememberMe, setRememberMe] = useState(false);
@@ -63,7 +63,7 @@ const Login: React.FC = () => {
 
   const validateForm = () => {
     const newErrors = {
-      email: validateEmail(formData.email),
+      userName: validateUserName(formData.userName),
       password: validateLoginPassword(formData.password),
     };
 
@@ -93,8 +93,8 @@ const Login: React.FC = () => {
     showSnackbar('Login Successful!', 'success');
     navigate('/products');
 
-    setFormData({ email: '', password: '' });
-    setErrors({ email: '', password: '' });
+    setFormData({ userName: '', password: '' });
+    setErrors({ userName: '', password: '' });
   };
 
   return (
@@ -140,11 +140,11 @@ const Login: React.FC = () => {
 
               <form onSubmit={handleSubmit} noValidate>
                 <CommonTextField
-                  label="Email"
-                  name="email"
-                  value={formData.email}
+                  label="User Name"
+                  name="userName"
+                  value={formData.userName}
                   onChange={handleChange}
-                  error={!!errors.email}
+                  error={!!errors.userName}
                   required
                   className="login-field"
                 />

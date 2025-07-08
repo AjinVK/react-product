@@ -20,6 +20,7 @@ interface CommonTextFieldProps {
     showPassword?: boolean;
     setShowPassword?: React.Dispatch<React.SetStateAction<boolean>>;
     className?: string;
+    [key: string]: any;
     onBlur?: () => void;
     onCopy?: (e: React.ClipboardEvent<any>) => void;
     onCut?: (e: React.ClipboardEvent<any>) => void;
@@ -43,7 +44,8 @@ const CommonTextField = ({
     onBlur,
     onCopy,
     onCut,
-    onPaste
+    onPaste,
+    ...rest
 }: CommonTextFieldProps) => {
     const [bounceToggle, setBounceToggle] = useState(false);
 
@@ -102,6 +104,7 @@ const CommonTextField = ({
             variant={variant}
             margin="normal"
             className={className}
+            {...rest}
             required={required}
             fullWidth
             error={error}
