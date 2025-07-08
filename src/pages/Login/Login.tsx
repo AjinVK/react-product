@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Box,
   Card,
@@ -27,6 +27,10 @@ interface User {
 const Login: React.FC = () => {
   const navigate = useNavigate();
   const { showSnackbar } = useSnackbar();
+
+  useEffect(() => {
+    document.title = "Huewine - Login";
+  }, []);
 
   const [formData, setFormData] = useState<User>({ userName: '', password: '' });
   const [errors, setErrors] = useState<{ userName: string; password: string }>({
