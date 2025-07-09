@@ -217,18 +217,22 @@ const Login: React.FC = () => {
                     }
                   />
 
-                  <Typography
-                    variant="body2"
-                    color="primary"
-                    className="forgotPassword"
-                    onClick={() => navigate('/forgot-password')}
-                    sx={{
-                      mt: { xs: 1, sm: 0 },
-                      fontSize: { xs: '0.81rem', sm: '0.85rem' },
-                    }}
-                  >
-                    Forgot Password?
-                  </Typography>
+                  <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2, }}>
+                    <Typography
+                      variant="body2"
+                      color="primary"
+                      className="forgotPassword"
+                      onClick={() => navigate('/forgot-password')}
+                      sx={{
+                        mt: { xs: 1, sm: 0 },
+                        fontSize: { xs: '0.81rem', sm: '0.85rem' },
+                        cursor: 'pointer',
+                        width: 'fit-content',
+                      }}
+                    >
+                      Forgot Password?
+                    </Typography>
+                  </Box>
 
                   <CardActions
                     sx={{

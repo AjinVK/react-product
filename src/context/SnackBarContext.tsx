@@ -10,6 +10,8 @@ import {
     Box,
     type SlideProps,
     type AlertColor,
+    AlertTitle,
+    capitalize,
 } from '@mui/material';
 
 type SnackbarItem = {
@@ -17,6 +19,7 @@ type SnackbarItem = {
     message: string;
     severity: AlertColor;
     open: boolean;
+    title?: string;
 };
 
 type SnackbarContextType = {
@@ -96,8 +99,19 @@ export const SnackbarProvider = ({ children }: { children: ReactNode }) => {
                     <SlideTransition key={snack.id} in={snack.open} direction={direction}>
                         <Alert
                             severity={snack.severity}
-                            sx={{ width: 'fit-content', minWidth: 300 }}
+                            sx={{
+                                width: '100%',
+                                minWidth: 320,
+                                maxWidth: 400,
+                                borderRadius: 2,
+                                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
+                                px: 2,
+                                py: 1.5,
+                            }}
                         >
+                            <AlertTitle>
+                                {snack.title || capitalize(snack.severity)}
+                            </AlertTitle>
                             {snack.message}
                         </Alert>
                     </SlideTransition>

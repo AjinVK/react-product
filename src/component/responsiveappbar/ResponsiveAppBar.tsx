@@ -5,6 +5,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
+import LogoutIcon from '@mui/icons-material/Logout';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
@@ -13,6 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import logo from '../../assets/images/Huewine_LOGO.svg';
 import '../responsiveappbar/style.css'
+import { Zoom } from '@mui/material';
 
 const settings = ['Logout'];
 
@@ -44,7 +46,7 @@ const ResponsiveAppBar: React.FC = () => {
 
           <Box
             component="a"
-            href="#huewine"
+            href="#"
             sx={{ display: { xs: 'none', md: 'flex' }, mr: 2 }}
           >
             <Box
@@ -73,7 +75,6 @@ const ResponsiveAppBar: React.FC = () => {
             variant="h5"
             noWrap
             component="a"
-            href="#"
             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, mr: 2 }}
           >
             <Box
@@ -85,13 +86,60 @@ const ResponsiveAppBar: React.FC = () => {
           </Typography>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton size='large' onClick={handleOpenUserMenu}>
+            <Tooltip
+              title="Open settings"
+              arrow
+              enterDelay={150}
+              leaveDelay={0}
+              slots={{
+                transition: Zoom,
+              }}
+              slotProps={{
+                popper: {
+                  modifiers: [
+                    {
+                      name: 'offset',
+                      options: {
+                        offset: [0, 0],
+                      },
+                    },
+                  ],
+                },
+                tooltip: {
+                  sx: {
+                    bgcolor: 'background.paper',
+                    color: 'text.primary',
+                    fontSize: '0.875rem',
+                    borderRadius: 2,
+                    boxShadow: '0 6px 18px rgba(0, 0, 0, 0.2)',
+                    transition: 'all 0.2s ease-in-out',
+                  },
+                },
+                arrow: {
+                  sx: {
+                    color: 'white',
+                  }
+                }
+              }}
+            >
+              <IconButton
+                size="large"
+                onClick={handleOpenUserMenu}
+                sx={{
+                  p: 0.5,
+                }}
+                aria-label="Open user menu"
+              >
                 <Avatar
-                  src='/default-avatar.png'
-                  sx={{ width: 40, height: 40 }}
+                  src="/default-avatar.png"
+                  alt="User Avatar"
+                  sx={{
+                    width: 40,
+                    height: 40,
+                  }}
                 />
               </IconButton>
+
             </Tooltip>
 
             <Menu
@@ -103,14 +151,36 @@ const ResponsiveAppBar: React.FC = () => {
               transformOrigin={{ vertical: 'top', horizontal: 'right' }}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={() => {
-                  handleCloseUserMenu();
-                  if (setting === 'Logout') {
-                    navigate('/');
-                  }
-                }}
+                <MenuItem
+                  key={setting}
+                  onClick={() => {
+                    handleCloseUserMenu();
+                    if (setting === 'Logout') {
+                      navigate('/');
+                    }
+                  }}
+                  sx={{
+                    justifyContent: 'flex-start',
+                    gap: 1.5,
+                    px: 2.5,
+                    py: 1,
+                    borderRadius: 3,
+                    transition: 'background-color 0.2s ease-in-out',
+                    '&:hover': {
+                      backgroundColor: 'rgba(0, 0, 0, 0.04)',
+                    },
+                  }}
                 >
-                  <Typography textAlign="center">{setting}</Typography>
+                  {setting === 'Logout' && (
+                    <LogoutIcon fontSize="small" color="action" />
+                  )}
+                  <Typography
+                    variant="body1"
+                    fontWeight={500}
+                    color="text.primary"
+                  >
+                    {setting}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
