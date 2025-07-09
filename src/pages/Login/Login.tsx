@@ -18,6 +18,7 @@ import { useSnackbar } from '../../context/SnackBarContext';
 
 import '../fromStyle.css';
 import './checkBox.css';
+import { motion } from 'framer-motion';
 
 interface User {
   userName: string;
@@ -101,6 +102,8 @@ const Login: React.FC = () => {
     setErrors({ userName: '', password: '' });
   };
 
+  const xOffset = 0;
+
   return (
     <Box
       className="rootBox"
@@ -109,143 +112,153 @@ const Login: React.FC = () => {
         py: { xs: 3, sm: 4 },
       }}
     >
-      <Card
-        className="card"
-        sx={{
-          px: 1,
-          py: { xs: 2, sm: 3 },
-          display: 'flex',
-          flexDirection: { xs: 'column', sm: 'row' },
-          overflow: 'hidden',
+      <motion.div
+        initial={{ opacity: 0, y: 20, scale: 0.98 }}
+        animate={{ opacity: 1, y: 0, scale: 1, x: xOffset }}
+        transition={{
+          delay: 0.2,
+          duration: 0.6,
+          ease: 'easeOut',
         }}
       >
-        <Grid container wrap="nowrap">
-          <Grid
-            p={{ xs: 1, sm: 1 }}
-          >
-            <CardContent
-              sx={{
-                p: { xs: 2, sm: 5 },
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                height: '100%',
-              }}
+        <Card
+          className="card"
+          sx={{
+            px: 1,
+            py: { xs: 2, sm: 3 },
+            display: 'flex',
+            flexDirection: { xs: 'column', sm: 'row' },
+            overflow: 'hidden',
+            margin: '1rem auto',
+          }}
+        >
+          <Grid container wrap="nowrap">
+            <Grid
+              p={{ xs: 1, sm: 1 }}
             >
-              <Typography variant="h5"
-                className="title"
+              <CardContent
                 sx={{
-                  mb: { xs: 2, sm: 2 },
-                  fontSize: { xs: '2rem', sm: '2rem' },
+                  p: { xs: 2, sm: 5 },
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  height: '100%',
                 }}
               >
-                Login
-              </Typography>
-
-              <form onSubmit={handleSubmit} noValidate>
-                <CommonTextField
-                  label="User Name"
-                  name="userName"
-                  value={formData.userName}
-                  onChange={handleChange}
-                  error={!!errors.userName}
-                  required
-                  className="login-field"
-                />
-
-                <CommonTextField
-                  label="Password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  error={!!errors.password}
-                  showPasswordToggle
-                  showPassword={showPassword}
-                  setShowPassword={setShowPassword}
-                  onPaste={handlePrevent}
-                  required
-                  className="login-field"
-                />
-
-                <FormControlLabel
+                <Typography variant="h5"
+                  className="title"
                   sx={{
-                    mt: 1,
-                    ml: 1,
-                  }}
-                  control={
-                    <Checkbox
-                      checked={rememberMe}
-                      onChange={(e) => setRememberMe(e.target.checked)}
-                      disableRipple
-                      icon={<span className="checkbox-box" />}
-                      checkedIcon={<span className="checkbox-box checkbox-checked" />}
-                      inputProps={{ 'aria-label': 'custom checkbox' }}
-                      sx={{
-                        padding: 0,
-                        mr: 1,
-                        '&:hover': {
-                          backgroundColor: 'rgba(50, 8, 129, 0.08)',
-                          borderRadius: '4px',
-                        },
-                      }}
-                    />
-                  }
-                  label={
-                    <Typography
-                      sx={{
-                        fontSize: '0.85rem',
-                        color: '#5119B7',
-                        fontWeight: 500,
-                        userSelect: 'none',
-                      }}
-                    >
-                      Remember Me
-                    </Typography>
-                  }
-                />
-
-                <Typography
-                  variant="body2"
-                  color="primary"
-                  className="forgotPassword"
-                  onClick={() => navigate('/forgot-password')}
-                  sx={{
-                    mt: { xs: 1, sm: 0 },
-                    fontSize: { xs: '0.81rem', sm: '0.85rem' },
+                    mb: { xs: 2, sm: 2 },
+                    fontSize: { xs: '2rem', sm: '2rem' },
                   }}
                 >
-                  Forgot Password?
+                  Login
                 </Typography>
 
-                <CardActions
-                  sx={{
-                    flexDirection: 'column',
-                    gap: 3,
-                    mt: 1.5,
-                    px: 0,
-                  }}
-                >
-                  <CommonButton
-                    type="submit"
-                    variant="contained"
-                    fullWidth
-                    className="loginBtn"
+                <form onSubmit={handleSubmit} noValidate>
+                  <CommonTextField
+                    label="User Name"
+                    name="userName"
+                    value={formData.userName}
+                    onChange={handleChange}
+                    error={!!errors.userName}
+                    required
+                    className="login-field"
+                  />
+
+                  <CommonTextField
+                    label="Password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    error={!!errors.password}
+                    showPasswordToggle
+                    showPassword={showPassword}
+                    setShowPassword={setShowPassword}
+                    onPaste={handlePrevent}
+                    required
+                    className="login-field"
+                  />
+
+                  <FormControlLabel
                     sx={{
-                      mt: { xs: 1, sm: 2 },
-                      padding: {
-                        xs: '0.6rem 1rem',
-                        sm: '0.8rem 1.5rem',
-                      },
-                      fontSize: {
-                        xs: '0.88rem',
-                        sm: '0.94rem',
-                      },
+                      mt: 1,
+                      ml: 1,
+                    }}
+                    control={
+                      <Checkbox
+                        checked={rememberMe}
+                        onChange={(e) => setRememberMe(e.target.checked)}
+                        disableRipple
+                        icon={<span className="checkbox-box" />}
+                        checkedIcon={<span className="checkbox-box checkbox-checked" />}
+                        inputProps={{ 'aria-label': 'custom checkbox' }}
+                        sx={{
+                          padding: 0,
+                          mr: 1,
+                          '&:hover': {
+                            backgroundColor: 'rgba(50, 8, 129, 0.08)',
+                            borderRadius: '4px',
+                          },
+                        }}
+                      />
+                    }
+                    label={
+                      <Typography
+                        sx={{
+                          fontSize: '0.85rem',
+                          color: '#5119B7',
+                          fontWeight: 500,
+                          userSelect: 'none',
+                        }}
+                      >
+                        Remember Me
+                      </Typography>
+                    }
+                  />
+
+                  <Typography
+                    variant="body2"
+                    color="primary"
+                    className="forgotPassword"
+                    onClick={() => navigate('/forgot-password')}
+                    sx={{
+                      mt: { xs: 1, sm: 0 },
+                      fontSize: { xs: '0.81rem', sm: '0.85rem' },
                     }}
                   >
-                    Login
-                  </CommonButton>
+                    Forgot Password?
+                  </Typography>
 
-                  {/* <CommonButton
+                  <CardActions
+                    sx={{
+                      flexDirection: 'column',
+                      gap: 3,
+                      mt: 1.5,
+                      px: 0,
+                    }}
+                  >
+                    <CommonButton
+                      type="submit"
+                      variant="contained"
+                      fullWidth
+                      className="loginBtn"
+                      sx={{
+                        mt: { xs: 1, sm: 2 },
+                        padding: {
+                          xs: '0.6rem 1rem',
+                          sm: '0.8rem 1.5rem',
+                        },
+                        fontSize: {
+                          xs: '0.88rem',
+                          sm: '0.94rem',
+                        },
+                      }}
+                    >
+                      Login
+                    </CommonButton>
+
+                    {/* <CommonButton
                     type="button"
                     variant="outlined"
                     fullWidth
@@ -265,12 +278,13 @@ const Login: React.FC = () => {
                   >
                     Sign Up
                   </CommonButton> */}
-                </CardActions>
-              </form>
-            </CardContent>
+                  </CardActions>
+                </form>
+              </CardContent>
+            </Grid>
           </Grid>
-        </Grid>
-      </Card>
+        </Card>
+      </motion.div>
     </Box>
   );
 };
