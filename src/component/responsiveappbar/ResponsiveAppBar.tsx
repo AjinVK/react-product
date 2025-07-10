@@ -46,7 +46,7 @@ const ResponsiveAppBar: React.FC = () => {
 
           <Box
             component="a"
-            href="#"
+            // href="#"
             sx={{ display: { xs: 'none', md: 'flex' }, mr: 2 }}
           >
             <Box
@@ -88,7 +88,7 @@ const ResponsiveAppBar: React.FC = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip
               title="Open settings"
-              arrow
+              // arrow
               enterDelay={150}
               leaveDelay={0}
               slots={{
